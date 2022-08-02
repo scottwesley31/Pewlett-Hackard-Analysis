@@ -158,7 +158,7 @@ SELECT dm.dept_no,
 	ce.first_name,
 	dm.from_date,
 	dm.to_date
--- INTO manager_info
+INTO manager_info
 FROM dept_manager AS dm
 	INNER JOIN departments AS d
 		ON (dm.dept_no = d.dept_no)
@@ -175,9 +175,33 @@ SELECT ce.emp_no,
 ce.first_name,
 ce.last_name,
 d.dept_name
--- INTO dept_info
-FROM current_emp as ce
+INTO dept_info
+FROM current_emp AS ce
 INNER JOIN dept_emp AS de
 ON (ce.emp_no = de.emp_no)
 INNER JOIN departments AS d
 ON (de.dept_no = d.dept_no);
+
+-- Skill Drill: Create query that will return emp_no, first_name, last_name, dept_name
+SELECT ri.emp_no,
+	ri.first_name,
+	ri.last_name,
+	d.dept_name
+FROM retirement_info AS ri
+INNER JOIN dept_emp AS de
+ON (ri.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no);
+
+-- Skill Drill: As above but filter for Sales and Development
+SELECT ri.emp_no,
+	ri.first_name,
+	ri.last_name,
+	d.dept_name
+INTO sales_development_emp
+FROM retirement_info AS ri
+INNER JOIN dept_emp AS de
+ON (ri.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no)
+WHERE dept_name IN ('Development', 'Sales');
