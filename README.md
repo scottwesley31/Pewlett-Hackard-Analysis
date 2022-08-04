@@ -25,7 +25,15 @@ The `retirement_titles` table results from joining columns located within the `e
 
 ### Unique Titles Table
 
-The `retirement_titles` table includes contains duplicate employee numbers and shows every job title a single employee has had, a similar table without these duplicate rows was needed - hence the creation of the `unique_titles` table.
+The `retirement_titles` table includes contains duplicate employee numbers and shows every job title a single employee has had, a similar table without these duplicate rows was needed - hence the creation of the `unique_titles` table. The table appears as follows:
+
+![unique_titles_table](https://user-images.githubusercontent.com/107309793/182827301-128375b8-9339-4f64-82c7-5b246676fe87.png)
+
+This table includes the `emp_no`, `first_name`, `last_name`, and `title` columns. Here is the query:
+
+![unique_titles_query](https://user-images.githubusercontent.com/107309793/182828387-ce38c780-876a-48e5-aa8f-d6d1c8b31619.png)
+
+This query utilizes the `DISTINCT ON` statement which returns only 1 of the duplicate rows (in this case it will return each unique `emp_no`). The row that results in the table is determined by the `ORDER BY` clause at the end (the `to_date` column was sorted in descending order to display each employees most recent title). The `unique_titles` table was created by filtering the retirement_titles table for only the employees who are still employed with (via the `WHERE` clause).
 
 ### Retirement Titles Table (with count)
 
