@@ -4,7 +4,7 @@ Module 7
 ## Overview of the analysis:
 
 ### Purpose
-Pewlett Hackard, a large company with currently over 100,000 employees has a large population of baby boomers who are soon to enter retirement (referred to by the company. The company is looking into which employees are eligible to retire and need specifications about which positions (and how many) will subsequently need filling. Bobby - an HR analyst for the company - has requested this information from datasets contained within CSV files and as of more recently - SQL.
+Pewlett Hackard, a large company with currently over 300,000 employees has a large population of baby boomers who are soon to enter retirement (referred to by the company. The company is looking into which employees are eligible to retire and need specifications about which positions (and how many) will subsequently need filling. Bobby - an HR analyst for the company - has requested this information from datasets contained within CSV files and as of more recently - SQL.
 
 Following these intial database queries, Bobby's manager also needs the number of retiring employees per title and to identify the employees who are eligible for a mentorship program. 
 
@@ -60,3 +60,9 @@ This table includes `emp_no`, `first_name`, `last_name`, `birth_date`, `from_dat
 To obtain unique employee numbers in each row the `DISTINCT ON` statement is utilized again. The `employees` table is merged with the `dept_emp` and then the `titles` table to obtain all the columns of interest. The `mentorship_eligibility` table is then filtered by the `to_date` column (finding only employees who are still employed) and for employees born between 1965-01-01 and 1965-12-31. These employees will likely enter retirement in 10 years.
 
 ## Summary:
+
+### Number of roles needed to fill following the "silver tsunami"
+The total number of roles that need to be filled is 72,458. This can be determined by creating a query that counts the total number of rows in the `unique_titles` table. This is a substantial chunk of the total population of the company (300,0224 - the total number of rows in the `employees` table).
+
+### Total number of next generation retirement-ready employees to mentor
+The total number of employees that are eligible for the mentorship program is 1,549. This can be obtained by creating a query which counts the total number of rows in the `mentorship_eligibility` table. This is far smaller of a chunk of employees compared to those who will be retiring currently (born in 1955 vs born in 1965). It might not be worth the companies time, money, and resources to start this mentorship program since it's such a small chunk of the overall employee population, but it depends on just how extensive this mentorship program is. The program may not be fleshed out at this point.
