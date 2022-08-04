@@ -37,7 +37,26 @@ This query utilizes the `DISTINCT ON` statement which returns only 1 of the dupl
 
 ### Retirement Titles Table (with count)
 
+To better summarize how many employees of each title are retiring, the `retiring_titles` table was created. It appears as follows:
+
+![retiring_titles_table](https://user-images.githubusercontent.com/107309793/182830044-c482a880-7dae-4e1e-bae7-24bb66e9b759.png)
+
+The table displays a `count` of the number of employees who are ready to retire and the associated  `title` for this count. Here is the query:
+
+![retiring_titles_query](https://user-images.githubusercontent.com/107309793/182830295-d5482670-2a2f-4b79-bd4f-8934745160fb.png)
+
+The query utilizes a `COUNT` statement to perform a count on the number of rows that exist in the table within the `title` column within the `unique_titles` table. Technically any column can be utilized in this statement since we need every row counted. The individual count for each title was created in `retiring_titles` using the `GROUP BY` clause and grouping all of the unique titles together. Lastly the table was sorted by descending count to reorganize the table to the titles with the largest number of retiring employees to the smallest.
+
 ### Mentorship Eligibility Table
 
+To finally obtain a list of employees who are eligible to participate in a mentorship program to ready them for retiring within the next 10 years, the `mentorship_eligibility` table was created. It appears as follows:
+
+![mentorship_eligibility_table](https://user-images.githubusercontent.com/107309793/182832260-52592b86-cfc7-486c-befd-5223ab82d31e.png)
+
+This table includes `emp_no`, `first_name`, `last_name`, `birth_date`, `from_date`, and `to_date` columns. Here is the corresponding query:
+
+![mentorship_eligibility_query](https://user-images.githubusercontent.com/107309793/182832494-6e891b6d-8b1d-4f23-a43c-dc9246aecb74.png)
+
+To obtain unique employee numbers in each row the `DISTINCT ON` statement is utilized again. The `employees` table is merged with the `dept_emp` and then the `titles` table to obtain all the columns of interest. The `mentorship_eligibility` table is then filtered by the `to_date` column (finding only employees who are still employed) and for employees born between 1965-01-01 and 1965-12-31. These employees will likely enter retirement in 10 years.
 
 ## Summary:
